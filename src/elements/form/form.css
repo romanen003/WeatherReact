@@ -1,0 +1,9 @@
+.Form {
+    box-shadow: 0 0 10px;
+    font-size: 15px;
+    padding: 20px;
+    text-align: center;
+}
+.Form__input_error {
+    border: 1px solid red;
+}

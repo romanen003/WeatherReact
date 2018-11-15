@@ -1,0 +1,10 @@
+.Weather__header {
+    font-size: 40px;
+    text-align: center;
+
+}
+.Weather__wrapper {
+    display: inline-block;
+    font-size: 0;
+    width: 50%;
+}
