@@ -1,10 +1,15 @@
 .Weather__header {
     font-size: 40px;
     text-align: center;
-
 }
 .Weather__wrapper {
+    box-sizing: border-box;
     display: inline-block;
     font-size: 0;
+    padding: 0 40px;
     width: 50%;
+    vertical-align: top;
+}
+.Weather__data {
+    padding-top: 40px;
 }

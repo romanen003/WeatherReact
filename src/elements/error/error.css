@@ -1,0 +1,14 @@
+.Error {
+    border: 3px solid red;
+    box-sizing: border-box;
+    padding: 10px 20px;
+    text-align: center;
+}
+.Error__status {
+    font-size: 30px;
+    margin: 5px;
+}
+.Error__text {
+    font-size: 20px;
+    margin: 5px;
+}

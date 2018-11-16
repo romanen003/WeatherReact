@@ -1,0 +1,19 @@
+.History {
+    position: relative;
+    padding: 0px 60px;
+    text-align: center;
+    height: 100vh;
+}
+.History__item {
+    padding: 10px 50px;
+}
+.History__empty {
+    font-size: 15px;
+    position: absolute;
+    left: 50%;
+    top: 40%;
+}
+.History__title {
+    font-size: 30px;
+    margin-bottom: 10px;
+}

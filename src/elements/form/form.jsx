@@ -14,7 +14,7 @@ export class Form extends Component {
     };
 
     onSubmitForm = (event) => {
-        const {city, isTrueValue} = this.state;
+        const {city} = this.state;
 
         event.preventDefault();
         if(!city.length) {
@@ -38,7 +38,9 @@ export class Form extends Component {
                 onSubmit={this.onSubmitForm}
             >
                 <label className='Form__name'>
-                    city:
+                    <span className='Form__name_position'>
+                        city:
+                    </span>
                     <input
                         className={isTrueValue}
                         type="text"

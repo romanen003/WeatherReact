@@ -7,3 +7,7 @@
 .Form__input_error {
     border: 1px solid red;
 }
+.Form__name_position {
+    font-size: 20px;
+    padding-right: 10px;
+}

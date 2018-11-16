@@ -8,7 +8,6 @@ export class WeatherInfo extends Component {
         } = this.props;
 
         return (
-
             <div className='Info'>
                 <h3 className="Info__cityName">
                     <span className='Info__cityName_span'>City:</span>

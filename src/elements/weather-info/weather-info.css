@@ -1,7 +1,8 @@
 .Info {
     box-shadow: 0 0 10px;
     box-sizing: border-box;
-    padding: 20px;
+    padding: 10px;
+    text-align: center;
 }
 .Info__cityName_span,
 .Info__citytemp_span{
@@ -11,6 +12,7 @@
 }
 .Info__cityName {
     font-size: 30px;
+    margin: 5px;
 }
 .Info__temp,
 .Info__tempMax,
