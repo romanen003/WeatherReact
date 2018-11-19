@@ -1,19 +1,59 @@
 import React, { Component } from 'react';
 import {Weather} from "./weather";
+import {} from 'prop-types';
+import {getWeatherData} from "../../services";
 
 const API_KEY = '1ccb4c4ad6f36ab9aa776590f12471bf';
 
 export class WeatherContainer extends Component {
+    static propTypes = {};
+    static defaultProps = {};
+
     state = {
+        inputsValue: '',
+        isNullValue: false,
         history: [],
         currentCity: {},
         error: {}
     };
 
-    getWeather  = (city) => {
-        const {history} = this.state;
+    onChangeInput = (value,event) => {
+        this.setState({
+            inputsValue: value,
+            isNullValue: value.length === 0
+        });
 
-        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`)
+    };
+
+    handleKeyUPInput = (event) => {
+        if (event.keyCode === 13) {
+            this.handleWeatherButton()
+        }
+    };
+
+    onInputBlur = () => {
+        this.setState({
+            isNullValue: this.state.inputsValue.length === 0
+        });
+    };
+
+    handleInputFocus = () => {
+        this.setState({
+            isNullValue: false
+        });
+    };
+
+    handleWeatherButton  = () => {
+        const {history,inputsValue} = this.state;
+
+        if (inputsValue.length === 0 ) {
+            this.setState({
+                isNullValue: true
+            });
+            return;
+        }
+
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${inputsValue}&appid=${API_KEY}&units=metric`)
             .then((response) => {
                     if (response.status !== 200) {
                         this.showError(response);
@@ -27,7 +67,8 @@ export class WeatherContainer extends Component {
                         temp: data.main.temp,
                         mintemp: data.main.temp_min,
                         maxtemp: data.main.temp_max
-                    }
+                    },
+                    time: new Date().toLocaleString()
                 };
 
                 this.setState(() => ({
@@ -54,19 +95,33 @@ export class WeatherContainer extends Component {
         }));
     };
 
+    onClearHistoryClick = () => {
+        this.setState({
+            history: []
+        });
+    };
+
     render() {
         const {
             history,
             currentCity,
-            error
+            error,
+            isNullValue
         } = this.state;
 
         return (
             <Weather
-                onGetWeather={this.getWeather}
+                onChangeInput={this.onChangeInput}
+                onInputBlur={this.onInputBlur}
+                handleWeatherButton={this.handleWeatherButton}
+                isNullValue={isNullValue}
                 weatherInfo={currentCity}
+                showError={error}
                 history={history}
                 errorInfo={error}
+                handleKeyUPInput={this.handleKeyUPInput}
+                handleInputFocus={this.handleInputFocus}
+                onClearHistoryClick={this.onClearHistoryClick}
             />
         );
     };

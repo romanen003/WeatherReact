@@ -1,10 +1,10 @@
 .Info {
+    background: rgba(255,255,255,0.7);
     box-shadow: 0 0 10px;
     box-sizing: border-box;
     padding: 10px;
     text-align: center;
 }
-.Info__cityName_span,
 .Info__citytemp_span{
     display: inline-block;
     font-size: 20px;
@@ -12,7 +12,8 @@
 }
 .Info__cityName {
     font-size: 30px;
-    margin: 5px;
+    margin: 5px 0px 5px 20px;
+    text-align: left;
 }
 .Info__temp,
 .Info__tempMax,
@@ -24,5 +25,11 @@
 .Info__tempMax,
 .Info__tempMin {
     display: inline-block;
-    width: 33.33%;
+}
+.Info__temp {
+    width: 50%;
+}
+.Info__tempMax,
+.Info__tempMin {
+    width: 25%;
 }

@@ -1,19 +1,26 @@
 .History {
+    background: rgba(255,255,255,0.7);
+    box-shadow: 0 0 10px;
+    box-sizing: border-box;
     position: relative;
-    padding: 0px 60px;
     text-align: center;
-    height: 100vh;
+    min-height: 200px;
+    overflow: hidden;
+    transition: height 1s;
 }
 .History__item {
-    padding: 10px 50px;
+    padding: 10px;
 }
 .History__empty {
     font-size: 15px;
     position: absolute;
-    left: 50%;
-    top: 40%;
+    left: 45%;
+    top: 50%;
 }
 .History__title {
     font-size: 30px;
-    margin-bottom: 10px;
+    margin: 10px 0 10px 0;
+}
+.History__clearButton {
+    padding: 10px 0;
 }

@@ -1,5 +1,16 @@
+body {
+    margin: 0;
+}
+.Weather {
+    background: url("http://komotoz.ru/photo/priroda/photos/samye_krasivye_mesta/samye_krasivye_mesta_24.jpg") no-repeat;
+    background-size: cover;
+    height: 100vh;
+    overflow: overlay;
+}
 .Weather__header {
     font-size: 40px;
+    margin: 0;
+    padding: 20px 0;
     text-align: center;
 }
 .Weather__wrapper {
@@ -7,7 +18,7 @@
     display: inline-block;
     font-size: 0;
     padding: 0 40px;
-    width: 50%;
+    width: 33.33%;
     vertical-align: top;
 }
 .Weather__data {

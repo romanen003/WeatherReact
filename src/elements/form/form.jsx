@@ -1,57 +1,70 @@
 import React, { Component } from 'react';
+import {func, bool, string} from 'prop-types';
+import {Button} from "..";
 import './form.css';
 
 export class Form extends Component {
+    static propTypes = {
+        onInputBlur: func,
+        handleWeatherButton: func,
+        isNullValue: bool,
+        typeInput: string,
+        handleKeyUPInput: func
+    };
+    static defaultProps = {
+        typeInput: 'text',
+        placeholder: 'Enter city'
+    };
+
     state ={
-        city: '',
-        isTrueValue: true
+        city: ''
     };
 
     onChangeInput = (event) => {
         this.setState({
             city: event.target.value
+        },() => {
+            this.props.onChange(this.state.city,event)
         });
     };
 
-    onSubmitForm = (event) => {
-        const {city} = this.state;
-
+    onSubmit = (event) => {
         event.preventDefault();
-        if(!city.length) {
-            this.setState({
-                isTrueValue: false
-            });
-            return;
-        };
-        this.props.onGetWeather(city);
-        this.setState({
-            city: '',
-            isTrueValue: true
-        });
     };
 
     render() {
-        const isTrueValue = this.state.isTrueValue ? '' : 'Form__input_error';
+        const {
+            onInputBlur,
+            handleWeatherButton,
+            isNullValue,
+            typeInput,
+            handleKeyUPInput,
+            placeholder,
+            handleInputFocus
+        } = this.props;
+
         return (
             <form
                 className='Form'
-                onSubmit={this.onSubmitForm}
+                onSubmit={this.onSubmit}
             >
                 <label className='Form__name'>
-                    <span className='Form__name_position'>
-                        city:
-                    </span>
                     <input
-                        className={isTrueValue}
-                        type="text"
-                        name="name"
+                        className='Form__input'
+                        type={typeInput}
+                        placeholder={placeholder}
                         value={this.state.city}
                         onChange={this.onChangeInput}
+                        onBlur={onInputBlur}
+                        onKeyUp={handleKeyUPInput}
+                        onFocus={handleInputFocus}
                     />
+                    {this.props.isNullValue && <div className='Form__error'>Enter the name of the city</div>}
                 </label>
-                <input
-                    type="submit"
-                    value="Show Weather"
+                <Button
+                    onClick={handleWeatherButton}
+                    disabled={isNullValue}
+                    label='Show Weather'
                 />
             </form>
         );

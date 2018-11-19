@@ -1,24 +1,32 @@
 import React, { Component } from 'react';
-import {WeatherInfo} from "../../elements";
+import {Button, WeatherInfo} from "../../elements";
 import './History.css';
 
 export  class History extends Component {
     render () {
-        const {history} = this.props;
+        const {history, onClearHistoryClick} = this.props;
 
         return (
             <div className='History'>
                 <h3 className='History__title'>History</h3>
                 {Object.keys(history).length !== 0 ?
-                    history.map((item,i)=>(
-                        <div
-                            className='History__item'
-                            key={i}
-                        >
-                            <WeatherInfo
-                                weatherInfo={item}
-                            />
-                        </div>))
+                    <React.Fragment>
+                        {history.map((item,i)=>(
+                            <div
+                                className='History__item'
+                                key={i}
+                            >
+                                <WeatherInfo
+                                    weatherInfo={item}
+                                />
+                            </div>))}
+                            <div className='History__clearButton'>
+                                <Button
+                                    label='Clear history'
+                                    onClick={onClearHistoryClick}
+                                />
+                            </div>
+                    </React.Fragment>
                     :
                     <p className='History__empty'>Empty</p>
                 }

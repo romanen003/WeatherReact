@@ -1,13 +1,28 @@
 .Form {
+    background: rgba(255,255,255,0.7);
     box-shadow: 0 0 10px;
     font-size: 15px;
-    padding: 20px;
+    padding: 30px 20px;
     text-align: center;
 }
-.Form__input_error {
-    border: 1px solid red;
+.Form__input {
+    font-size: 15px;
+    margin-right: 15px;
+    padding: 10px 5px;
+    outline: 0;
+}
+.Form__name {
+    position: relative;
 }
 .Form__name_position {
     font-size: 20px;
     padding-right: 10px;
+}
+.Form__input {}
+.Form__error {
+    bottom: -35px;
+    font-size: 14px;
+    position: absolute;
+    left: 0px;
+    width: 100%;
 }
