@@ -3,6 +3,7 @@
     box-shadow: 0 0 10px;
     box-sizing: border-box;
     padding: 10px;
+    position: relative;
     text-align: center;
 }
 .Info__citytemp_span{
@@ -15,21 +16,25 @@
     margin: 5px 0px 5px 20px;
     text-align: left;
 }
-.Info__temp,
-.Info__tempMax,
-.Info__tempMin {
+.Info__temp {
+    display: inline-block;
     color: dimgray;
     font-size: 18px;
 }
-.Info__temp,
-.Info__tempMax,
-.Info__tempMin {
-    display: inline-block;
-}
 .Info__temp {
-    width: 50%;
-}
-.Info__tempMax,
-.Info__tempMin {
     width: 25%;
+    font-size: 15px;
+    vertical-align: middle;
+}
+.Info__value {
+    display: block;
+}
+.Info__pic {
+    background-size: 96%;
+    background-repeat: no-repeat;
+    position: absolute;
+    height: 57px;
+    right: 34px;
+    width: 70px;
+    top: 10px;
 }

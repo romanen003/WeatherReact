@@ -18,9 +18,26 @@ body {
     display: inline-block;
     font-size: 0;
     padding: 0 40px;
-    width: 33.33%;
+    width: 40%;
     vertical-align: top;
+}
+.Weather__wrapper_history {
+    text-align: right;
+}
+.Weather__form,
+.Weather__data {
+    display: inline-block;
+    width: 500px;
 }
 .Weather__data {
     padding-top: 40px;
+    width: 500px;
+}
+.Weather__history {
+    display: inline-block;
+    width: 300px;
+}
+.Weather__wrapper_form {
+    text-align: center;
+    width: 60%;
 }

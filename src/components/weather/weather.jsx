@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Form,WeatherInfo,Error} from '../../elements';
 import {History} from "../History/History";
-import {func, bool, object, array} from 'prop-types';
+import {func, bool, object, array, number} from 'prop-types';
 import './weather.css';
 
 export class Weather extends Component {
@@ -14,7 +14,9 @@ export class Weather extends Component {
         errorInfo: object,
         history: array,
         handleKeyUPInput: func,
-        onClearHistoryClick: func
+        onClearHistoryClick: func,
+        handleShowButton: func,
+        showMore: number
     };
 
     render() {
@@ -28,7 +30,9 @@ export class Weather extends Component {
             history,
             handleKeyUPInput,
             handleInputFocus,
-            onClearHistoryClick
+            onClearHistoryClick,
+            handleShowButton,
+            showMore
         } = this.props;
         const showData = Object.keys(weatherInfo).length !== 0 && <WeatherInfo weatherInfo={weatherInfo}/>;
         const showError = Object.keys(errorInfo).length !== 0 && <Error errorInfo={errorInfo}/>;
@@ -36,8 +40,7 @@ export class Weather extends Component {
         return (
             <div className='Weather'>
                 <h2 className='Weather__header'>Weather</h2>
-                <div className="Weather__wrapper"></div>
-                <div className="Weather__wrapper">
+                <div className="Weather__wrapper Weather__wrapper_form">
                     <div className="Weather__form">
                         <Form
                             onChange={onChangeInput}
@@ -53,11 +56,13 @@ export class Weather extends Component {
                         {showError}
                     </div>
                 </div>
-                <div className="Weather__wrapper">
+                <div className="Weather__wrapper Weather__wrapper_history">
                     <div className='Weather__history'>
                         <History
                             history={history}
                             onClearHistoryClick={onClearHistoryClick}
+                            handleShowButton={handleShowButton}
+                            showMore={showMore}
                         />
                     </div>
                 </div>

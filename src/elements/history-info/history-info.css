@@ -1,0 +1,86 @@
+.HistoryItem {
+    background: rgba(255,255,255,0.7);
+    box-shadow: 0 0 10px;
+    position: relative;
+    padding: 10px 0;
+}
+.HistoryItem__cityName,
+.HistoryItem__button {
+    box-sizing: border-box;
+    display: inline-block;
+    font-size: 0;
+    width: 50%;
+}
+.HistoryItem__cityName {
+    padding-right: 10px;
+    text-align: right;
+}
+.HistoryItem__button {
+    padding-left: 20px;
+    text-align: left;
+}
+.HistoryItem__cityName_span {
+    font-size: 22px;
+    vertical-align: middle;
+}
+.button_history {
+    padding: 5px 20px;
+    vertical-align: middle;
+}
+.History__more {
+    background: rgba(255,255,255,0.7);
+    box-shadow: 0 0 10px;
+    box-sizing: border-box;
+    font-size: 20px;
+    position: absolute;
+    left: -295px;
+    top: -70px;
+    width: 250px;
+    height: 200px;
+}
+.History__arrow {
+    position: relative;
+}
+.History__arrow:after, .History__arrow:before {
+    left: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.History__arrow:after {
+    border-color: rgba(255, 255, 255, 0);
+    border-left-color: #ffffff;
+    border-width: 16px;
+    margin-top: 79px;
+}
+.History__arrow:before {
+    border-color: rgba(0, 0, 0, 0);
+    border-left-color: #000;
+    border-width: 20px;
+    margin-top: 75px;
+}
+.History__param {
+    display: block;
+    margin: 5px 0;
+}
+.History__param_temp,
+.History__param_pressure {
+    display: inline-block;
+    font-size: 0;
+    width: 50%;
+}
+.History__paramName,
+.Info__value{
+    font-size: 18px;
+}
+.History__param_pic {
+    background-size: 35%;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 80px;
+}

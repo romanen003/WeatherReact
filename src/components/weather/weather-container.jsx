@@ -14,7 +14,8 @@ export class WeatherContainer extends Component {
         isNullValue: false,
         history: [],
         currentCity: {},
-        error: {}
+        error: {},
+        showMore: -1
     };
 
     onChangeInput = (value,event) => {
@@ -61,14 +62,14 @@ export class WeatherContainer extends Component {
                     }
                     response.json()
             .then((data) => {
+                console.log(data);
                 const dataWeather = {
                     city: data.name,
-                    temp: {
-                        temp: data.main.temp,
-                        mintemp: data.main.temp_min,
-                        maxtemp: data.main.temp_max
-                    },
-                    time: new Date().toLocaleString()
+                    pressure: data.main.pressure,
+                    description:data.weather[0].description ,
+                    temp: data.main.temp,
+                    time: new Date().toLocaleString(),
+                    pic: data.weather[0].icon
                 };
 
                 this.setState(() => ({
@@ -101,12 +102,19 @@ export class WeatherContainer extends Component {
         });
     };
 
+    handleShowButton = (i) => {
+        this.setState({
+            showMore: i === this.state.showMore ? -1 : i
+        });
+    };
+
     render() {
         const {
             history,
             currentCity,
             error,
-            isNullValue
+            isNullValue,
+            showMore
         } = this.state;
 
         return (
@@ -122,6 +130,8 @@ export class WeatherContainer extends Component {
                 handleKeyUPInput={this.handleKeyUPInput}
                 handleInputFocus={this.handleInputFocus}
                 onClearHistoryClick={this.onClearHistoryClick}
+                showMore={showMore}
+                handleShowButton={this.handleShowButton}
             />
         );
     };

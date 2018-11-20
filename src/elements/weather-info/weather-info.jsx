@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {object} from 'prop-types';
+import {getPicWeather} from "../../services";
 import './weather-info.css';
 
 export class WeatherInfo extends Component {
@@ -11,6 +12,7 @@ export class WeatherInfo extends Component {
         const {
             weatherInfo
         } = this.props;
+        const backgroundWeather = getPicWeather(weatherInfo.pic);
 
         return (
             <div className='Info'>
@@ -18,17 +20,28 @@ export class WeatherInfo extends Component {
                     {weatherInfo.city}
                 </h3>
                 <p className="Info__temp">
-                    <span className='Info__citytemp_span'>Temperature:</span>
-                    {weatherInfo.temp.temp}
+                    Temperature:
+                    <span className='Info__value'>
+                        {weatherInfo.temp}
+                    </span>
                 </p>
-                <p className="Info__tempMax">
-                    <span className='Info__citytemp_span'>Max:</span>
-                    {weatherInfo.temp.maxtemp}
+                <p className="Info__temp">
+                    Pressure:
+                    <span className='Info__value'>
+                        {weatherInfo.pressure}
+                    </span>
                 </p>
-                <p className="Info__tempMin">
-                    <span className='Info__citytemp_span'>Min:</span>
-                    {weatherInfo.temp.mintemp}
+                <p className="Info__temp">
+                    <span className='Info__value'>
+                        {weatherInfo.time}
+                    </span>
                 </p>
+                <p className='Info__temp'>
+                    <span className='Info__value'>
+                        {weatherInfo.description}
+                    </span>
+                </p>
+                <div className='Info__pic' style={backgroundWeather}></div>
             </div>
         );
     };

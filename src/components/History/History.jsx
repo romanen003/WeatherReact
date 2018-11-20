@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
-import {Button, WeatherInfo} from "../../elements";
+import {Button,HistoryItem} from "../../elements";
 import './History.css';
 
 export  class History extends Component {
+
     render () {
-        const {history, onClearHistoryClick} = this.props;
+        const {
+            history,
+            onClearHistoryClick,
+            showMore
+        } = this.props;
 
         return (
             <div className='History'>
@@ -16,8 +21,10 @@ export  class History extends Component {
                                 className='History__item'
                                 key={i}
                             >
-                                <WeatherInfo
+                                <HistoryItem
                                     weatherInfo={item}
+                                    handleShowButton={()=>this.props.handleShowButton(i)}
+                                    showMore={i === showMore }
                                 />
                             </div>))}
                             <div className='History__clearButton'>
