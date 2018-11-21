@@ -1,2 +1,2 @@
-// export {getWeatherData} from "./getDataWeather/";
 export {getPicWeather} from './getPicWeather';
+export {getWeatherData} from './getDataWeather';
