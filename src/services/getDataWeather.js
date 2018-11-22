@@ -20,6 +20,6 @@ export function getWeatherData(cityName) {
                                 pic: data.weather[0].icon
                             };
                         })
-                 .catch(e => console.log('error', e))}
+                 .catch(e => e)}
          );
 }

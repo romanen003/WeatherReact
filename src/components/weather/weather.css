@@ -21,9 +21,7 @@ body {
     padding: 0 40px;
     width: 40%;
     vertical-align: top;
-}
-.Weather__wrapper_history {
-    text-align: right;
+    text-align: center;
 }
 .Weather__form,
 .Weather__data {
@@ -39,6 +37,14 @@ body {
     width: 300px;
 }
 .Weather__wrapper_form {
-    text-align: center;
     width: 60%;
+}
+.Weather__favorites {
+    display: inline-block;
+    bottom: 0;
+    left: 50%;
+    position: fixed;
+    height: 200px;
+    width: 300px;
+    transform: translate(-50%);
 }

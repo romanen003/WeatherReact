@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Form,WeatherInfo,Error} from '../../elements';
 import {History} from "../History/History";
+import {FavoritesContainer} from '../favorites/favorites-container';
 import {func, bool, object, array, number} from 'prop-types';
 import './weather.css';
 
@@ -15,8 +16,8 @@ export class Weather extends Component {
         history: array,
         handleKeyUPInput: func,
         onClearHistoryClick: func,
-        handleShowButton: func,
-        showMore: number
+        handleFavoritesCity: func,
+        favorits: object
     };
 
     render() {
@@ -31,15 +32,23 @@ export class Weather extends Component {
             handleKeyUPInput,
             handleInputFocus,
             onClearHistoryClick,
-            handleShowButton,
-            showMore
+            handleFavoritesCity,
+            favorites
         } = this.props;
-        const showData = Object.keys(weatherInfo).length !== 0 && <WeatherInfo weatherInfo={weatherInfo}/>;
+        const showData = Object.keys(weatherInfo).length !== 0 &&
+            <WeatherInfo
+                weatherInfo={weatherInfo}
+                handleFavoritesCity={handleFavoritesCity}
+                favorites={favorites}
+            />;
         const showError = Object.keys(errorInfo).length !== 0 && <Error errorInfo={errorInfo}/>;
 
         return (
             <div className='Weather'>
                 <h2 className='Weather__header'>Weather</h2>
+                <FavoritesContainer
+                    favorites={favorites}
+                />
                 <div className="Weather__wrapper Weather__wrapper_form">
                     <div className="Weather__form">
                         <Form
@@ -61,8 +70,6 @@ export class Weather extends Component {
                         <History
                             history={history}
                             onClearHistoryClick={onClearHistoryClick}
-                            handleShowButton={handleShowButton}
-                            showMore={showMore}
                         />
                     </div>
                 </div>

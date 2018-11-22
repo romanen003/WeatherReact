@@ -3,12 +3,20 @@ import {Button,HistoryItem} from "../../elements";
 import './History.css';
 
 export  class History extends Component {
+    state = {
+        showMore: null
+    };
+
+    handleShowButton = (i) => {
+        this.setState({
+            showMore: i === this.state.showMore ? -1 : i
+        });
+    };
 
     render () {
         const {
             history,
-            onClearHistoryClick,
-            showMore
+            onClearHistoryClick
         } = this.props;
 
         return (
@@ -23,8 +31,8 @@ export  class History extends Component {
                             >
                                 <HistoryItem
                                     weatherInfo={item}
-                                    handleShowButton={()=>this.props.handleShowButton(i)}
-                                    showMore={i === showMore }
+                                    handleShowButton={()=>this.handleShowButton(i)}
+                                    showMore={i === this.state.showMore }
                                 />
                             </div>))}
                             <div className='History__clearButton'>

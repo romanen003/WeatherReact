@@ -1,19 +1,29 @@
 import React, { Component } from 'react';
-import {object} from 'prop-types';
+import {object, func} from 'prop-types';
 import {getPicWeather} from "../../services";
 import './weather-info.css';
 
 export class WeatherInfo extends Component {
     static propTypes = {
-        weatherInfo: object
+        weatherInfo: object,
+        handleFavoritesCity: func
     };
+    static defaultProps = {
+        weatherInfo: {},
+        handleFavoritesCity: () => {}
+    };
+
 
     render () {
         const {
-            weatherInfo
+            weatherInfo,
+            handleFavoritesCity,
+            favorites
         } = this.props;
         const backgroundWeather = getPicWeather(weatherInfo.pic);
-
+        const favoriteStatus = favorites.includes(weatherInfo.city)?
+            'Info__favorites Info__favorites_active' :
+            'Info__favorites';
         return (
             <div className='Info'>
                 <h3 className="Info__cityName">
@@ -42,6 +52,10 @@ export class WeatherInfo extends Component {
                     </span>
                 </p>
                 <div className='Info__pic' style={backgroundWeather}></div>
+                <div
+                    className={favoriteStatus}
+                    onClick={()=>{handleFavoritesCity(weatherInfo.city)}}
+                ></div>
             </div>
         );
     };

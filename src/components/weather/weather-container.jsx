@@ -13,7 +13,7 @@ export class WeatherContainer extends Component {
         history: [],
         currentCity: {},
         error: {},
-        showMore: -1
+        favorites: []
     };
 
     onChangeInput = (value,event) => {
@@ -51,8 +51,9 @@ export class WeatherContainer extends Component {
             });
             return;
         }
+
         const result = await getWeatherData(inputsValue);
-        console.log (result);
+
         if (result.city) {
             this.setState(() => ({
                 currentCity: result,
@@ -73,9 +74,27 @@ export class WeatherContainer extends Component {
         });
     };
 
-    handleShowButton = (i) => {
+    handleFavoritesCity = (city) => {
+        const isNewCity = this.state.favorites.reduce((acc,item,i)=>{
+                                if(item === city){
+                                    return acc = i
+                                }
+                                return acc;
+                            },null);
+        if (isNewCity === null){
+            this.setState({
+                favorites: [
+                    ...this.state.favorites,
+                    city
+                ]
+            });
+            return;
+        }
+        const data = this.state.favorites;
+
+        data.splice(isNewCity,1);
         this.setState({
-            showMore: i === this.state.showMore ? -1 : i
+            favorites: data
         });
     };
 
@@ -85,7 +104,7 @@ export class WeatherContainer extends Component {
             currentCity,
             error,
             isNullValue,
-            showMore
+            favorites
         } = this.state;
 
         return (
@@ -101,8 +120,8 @@ export class WeatherContainer extends Component {
                 handleKeyUPInput={this.handleKeyUPInput}
                 handleInputFocus={this.handleInputFocus}
                 onClearHistoryClick={this.onClearHistoryClick}
-                showMore={showMore}
-                handleShowButton={this.handleShowButton}
+                handleFavoritesCity={this.handleFavoritesCity}
+                favorites={favorites}
             />
         );
     };
