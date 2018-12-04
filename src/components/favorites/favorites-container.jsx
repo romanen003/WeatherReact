@@ -1,20 +1,33 @@
 import React, { Component } from 'react';
-import {object} from 'prop-types';
+import {array} from 'prop-types';
 import {Favorites} from "./favorites";
-import {getPicWeather, getWeatherData} from "../../services";
+import {getWeatherData} from "../../services";
 
 export class FavoritesContainer extends Component{
-    static propTypes = {};
-    static defaultProps = {};
-
-    state = {
-        isOpen: false
+    static propTypes = {
+        favorites: array
+    };
+    static defaultProps = {
+        favorites: []
     };
 
-    handleShowWidget = () => {
-      this.setState({
-          isOpen: true
-      });
+    state = {
+        isOpen: false,
+        actualWeather: [],
+        loading: false
+    };
+
+    handleShowWidget = async () => {
+        await this.setState({
+            actualWeather: [],
+            isOpen: true,
+            loading: true
+        });
+        const data = await this.getActualWeather();
+        await this.setState({
+            actualWeather: [...data],
+            loading: false
+        });
     };
 
     handleHiddenWIdget = () => {
@@ -23,16 +36,27 @@ export class FavoritesContainer extends Component{
         });
     };
 
+    getActualWeather = () => {
+        const {favorites} = this.props;
+
+        return Promise.all(favorites.map((city)=>getWeatherData(city)))
+            .then(result => result);
+    };
+
 
     render () {
-        const {isOpen} = this.state;
+        const {isOpen, loading,actualWeather} = this.state;
+        const {favorites, handleFavoritesCity} = this.props;
 
         return (
             <Favorites
-                favorites={this.props.favorites}
                 isOpen={isOpen}
+                loading={loading}
                 handleShowWidget={this.handleShowWidget}
                 handleHiddenWIdget={this.handleHiddenWIdget}
+                handleFavoritesCity={handleFavoritesCity}
+                favorites={favorites}
+                actualWeather={actualWeather}
             />
         );
     }

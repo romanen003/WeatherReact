@@ -3,7 +3,7 @@ body {
 }
 .Weather {
     font-family: 'Raleway', sans-serif;
-    background: url("http://komotoz.ru/photo/priroda/photos/samye_krasivye_mesta/samye_krasivye_mesta_24.jpg") no-repeat;
+    background: url("../../img/samye_krasivye_mesta_24.jpg") no-repeat;
     background-size: cover;
     height: 100vh;
     overflow: overlay;

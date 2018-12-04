@@ -1,0 +1,12 @@
+.Loading {
+    display: inline-block;
+    box-sizing: border-box;
+    height: 160px;
+    width: 200px;
+    left: 50%;
+}
+.Loading__indicator {
+    background: url(/static/media/Spinner-1s-200px.1bff971c.gif) no-repeat;
+    height: 160px;
+    width: 200px;
+}

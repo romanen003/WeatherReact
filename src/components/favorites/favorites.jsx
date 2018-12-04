@@ -1,33 +1,40 @@
 import React, { Component } from 'react';
-import {WeatherInfo} from '../../elements';
-import {getWeatherData} from "../../services";
-import {array, bool, func} from 'prop-types';
+import {Loading, WeatherInfo} from '../../elements';
+import {bool, func} from 'prop-types';
 import './favorites.css';
 
 
 export class Favorites extends Component{
     static propTypes = {
-        favorites: array,
         isOpen: bool,
         handleShowWidget: func,
-        handleHiddenWIdget: func
+        handleHiddenWIdget: func,
+        loading: bool
     };
     static defaultProps = {
-        favorites: [],
         isOpen: false,
         handleShowWidget: () => {},
-        handleHiddenWIdget: () => {}
+        handleHiddenWIdget: () => {},
+        loading: bool
     };
 
     render () {
         const {
-            favorites,
             isOpen,
             handleShowWidget,
-            handleHiddenWIdget
+            handleHiddenWIdget,
+            favorites,
+            loading,
+            actualWeather,
+            handleFavoritesCity
         } = this.props;
         const favoritesIsOpen = isOpen ? 'Favorites Favorites__open' : 'Favorites';
-        const isDataEmpty = Object.assign(favorites).length === 0;
+        const isDataEmpty = favorites.length === 0 ;
+        const actualWeatherView = !isDataEmpty && actualWeather.map((item,i)=>
+            <WeatherInfo key={i}
+                         weatherInfo={item}
+                         handleFavoritesCity={handleFavoritesCity}
+                         favorites={favorites}/>);
 
         return (
             <div className={favoritesIsOpen}>
@@ -43,7 +50,7 @@ export class Favorites extends Component{
                                 </div>
                                 :
                                 <div>
-                                    {favorites.map((item,i) => <p key={i}>{item}</p>)}
+                                    {actualWeatherView}
                                 </div>
                             }
                             <div
@@ -53,6 +60,7 @@ export class Favorites extends Component{
                                 X
                             </div>
                         </div>
+                        {loading && !isDataEmpty && <div className='Favorites__loading'><Loading/></div>}
                     </div>
                    :
                    <h2 className='Favorites__title' onClick={handleShowWidget}>Favorites City</h2>

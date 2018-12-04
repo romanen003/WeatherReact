@@ -48,6 +48,7 @@ export class Weather extends Component {
                 <h2 className='Weather__header'>Weather</h2>
                 <FavoritesContainer
                     favorites={favorites}
+                    handleFavoritesCity={handleFavoritesCity}
                 />
                 <div className="Weather__wrapper Weather__wrapper_form">
                     <div className="Weather__form">

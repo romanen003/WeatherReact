@@ -8,6 +8,7 @@ export class WeatherInfo extends Component {
         weatherInfo: object,
         handleFavoritesCity: func
     };
+
     static defaultProps = {
         weatherInfo: {},
         handleFavoritesCity: () => {}
